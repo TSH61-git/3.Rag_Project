@@ -3,6 +3,21 @@
 ## תיאור הפרויקט
 מערכת RAG שמאפשרת לתשאל ולהפיק תובנות מקבצי התיעוד של כלי Agentic Coding (Cursor, Claude Code וכו').
 
+## 📚 תיעוד מלא
+
+כל התיעוד נמצא בתיקיית [docs/](docs/):
+
+- 🚀 [מדריך התקנה](docs/INSTALLATION.md)
+- 📖 [מדריך שימוש](docs/USAGE.md)
+- 🏗️ [ארכיטקטורה](docs/ARCHITECTURE.md)
+- 🔄 [Workflow](docs/WORKFLOW.md)
+- 📡 [API](docs/API.md)
+- ⚙️ [הגדרות](docs/CONFIGURATION.md)
+- 🛠️ [פיתוח](docs/DEVELOPMENT.md)
+- ❓ [שאלות נפוצות](docs/FAQ.md)
+- 🔧 [פתרון בעיות](docs/TROUBLESHOOTING.md)
+- 🔄 [תיעוד אוטומטי](docs/AUTO_DOCUMENTATION.md)
+
 ## שלב א' - MVP: תשאול סמנטי עם Embeddings
 
 ### טכנולוגיות

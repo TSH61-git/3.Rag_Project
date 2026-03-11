@@ -5,3 +5,4 @@ llama-index-llms-ollama
 cohere
 gradio
 python-dotenv
+watchdog
