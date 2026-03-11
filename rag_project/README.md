@@ -7,8 +7,8 @@
 
 ### טכנולוגיות
 - **LlamaIndex**: Framework לבניית יישומי RAG
-- **Cohere**: מודל Embeddings ו-LLM
-- **Pinecone**: מסד נתונים וקטורי
+- **Cohere**: מודל Embeddings ו-LLM (command-r)
+- **אחסון מקומי**: Vector store בקבצי JSON
 - **Gradio**: ממשק משתמש
 
 ### התקנה
@@ -18,12 +18,9 @@
 pip install -r requirements.txt
 ```
 
-2. צור קובץ `.env` והוסף את המפתחות שלך:
+2. צור קובץ `.env` והוסף את מפתח Cohere:
 ```bash
 COHERE_API_KEY=your_key_here
-PINECONE_API_KEY=your_key_here
-PINECONE_ENVIRONMENT=your_environment
-PINECONE_INDEX_NAME=rag-docs-index
 ```
 
 3. בנה את האינדקס (פעם אחת):
@@ -47,9 +44,14 @@ python app.py
    ↓
 4. VectorStoreIndex (indexer.py)
    ↓
-5. Pinecone Storage (indexer.py)
+5. Local Storage (data/storage/)
    ↓
-6. Query Engine (query_engine.py)
+6. Workflow (rag_workflow.py):
+   - Input Validation
+   - Node Retrieval
+   - Quality Check
+   - LLM Synthesis (Cohere)
+   - Response Formatting
    ↓
 7. Gradio UI (app.py)
 ```
@@ -91,8 +93,13 @@ rag_project/
 └── README.md
 ```
 
-## שלב ב' - Event-Driven (בפיתוח)
-בשלב זה נשדרג את הארכיטקטורה ל-Workflow מבוסס אירועים.
+## שלב ב' - Event-Driven Workflow (✅ הושלם)
+הארכיטקטורה שודרגה ל-Workflow מבוסס אירועים עם 5 שלבים:
+1. **Input Validation** - אימות קלט
+2. **Node Retrieval** - שליפת nodes רלוונטיים
+3. **Quality Check** - בדיקת איכות התוצאות
+4. **LLM Synthesis** - סינתזה של תשובה עם Cohere LLM
+5. **Response Formatting** - עיצוב התשובה הסופית
 
 ## שלב ג' - Data Extraction (בפיתוח)
 בשלב זה נוסיף חילוץ נתונים מובנה לשאלות מורכבות.

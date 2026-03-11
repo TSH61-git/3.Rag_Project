@@ -2,25 +2,28 @@ import sys
 sys.path.append('src')
 
 import gradio as gr
-import asyncio
 from indexer import load_existing_index
-from rag_workflow import RAGWorkflow
+from simple_rag import SimpleRAGPipeline
 
 # Load index
 print("Loading index...")
 index = load_existing_index()
 print("Index loaded successfully!")
 
-# Create workflow
-workflow = RAGWorkflow(index=index)
-print("RAG Workflow initialized with @step decorators!")
-print("Using Event-Driven architecture\n")
+# Create pipeline
+pipeline = SimpleRAGPipeline(index=index)
+print("RAG Pipeline initialized with 5 steps:")
+print("  1. Input Validation")
+print("  2. Node Retrieval")
+print("  3. Quality Check")
+print("  4. LLM Synthesis (Cohere)")
+print("  5. Response Formatting")
+print()
 
 def chat(message, history):
-    """Handle chat messages using workflow with @step decorators"""
+    """Handle chat messages using simple RAG pipeline"""
     try:
-        # Run async workflow
-        response = asyncio.run(workflow.run(query=message))
+        response = pipeline.query(message)
         return response
     except Exception as e:
         print(f"Unexpected error: {str(e)}")
