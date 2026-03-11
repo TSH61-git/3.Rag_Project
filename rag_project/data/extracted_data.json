@@ -1,0 +1,763 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-03-11T14:09:29.959673",
+  "sources": [
+    {
+      "tool": "cursor",
+      "root_path": "mock_docs/cursor",
+      "files": [
+        {
+          "path": "mock_docs\\cursor\\instructions.md",
+          "last_modified": "2026-03-10T16:33:13.356508",
+          "hash": "sha256:458cc614d8bec347"
+        },
+        {
+          "path": "mock_docs\\cursor\\spec.md",
+          "last_modified": "2026-03-10T16:32:09.315171",
+          "hash": "sha256:3c1b525655fc23c5"
+        },
+        {
+          "path": "mock_docs\\cursor\\tasks.md",
+          "last_modified": "2026-03-10T16:33:13.023443",
+          "hash": "sha256:dda9829faed07470"
+        }
+      ]
+    },
+    {
+      "tool": "claude_code",
+      "root_path": "mock_docs/claude_code",
+      "files": [
+        {
+          "path": "mock_docs\\claude_code\\decisions.md",
+          "last_modified": "2026-03-10T16:33:13.798263",
+          "hash": "sha256:274e62b5d2c92b2b"
+        },
+        {
+          "path": "mock_docs\\claude_code\\plan.md",
+          "last_modified": "2026-03-10T16:33:14.143972",
+          "hash": "sha256:b2d8bd990a34b6d6"
+        },
+        {
+          "path": "mock_docs\\claude_code\\README.md",
+          "last_modified": "2026-03-10T16:33:13.579253",
+          "hash": "sha256:886320295170990a"
+        }
+      ]
+    }
+  ],
+  "items": {
+    "decisions": [
+      {
+        "id": "dec-cur-001",
+        "title": "Database Choice",
+        "summary": "PostgreSQL for relational data storage.",
+        "date": "2024-01-15",
+        "status": "approved",
+        "reasoning": "ACID compliance and support for complex queries required for product catalog management.",
+        "alternatives": "Other relational databases like MySQL, SQLite, or NoSQL options like MongoDB.",
+        "impact": "Database architecture and application performance.",
+        "tags": [
+          "database",
+          "acid",
+          "product catalog"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\spec.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:13.325695"
+      },
+      {
+        "id": "dec-cur-002",
+        "title": "Authentication Mechanism",
+        "summary": "JWT-based authentication with refresh tokens.",
+        "date": "2024-01-20",
+        "status": "approved",
+        "reasoning": "Standardized and secure authentication method.",
+        "alternatives": "OAuth, basic authentication, or custom token-based systems.",
+        "impact": "User login, session management, and security.",
+        "tags": [
+          "security",
+          "jwt",
+          "authentication"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\spec.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:13.325707"
+      },
+      {
+        "id": "dec-cla-001",
+        "title": "API Versioning Strategy",
+        "summary": "Use URL path versioning for API endpoints.",
+        "date": "2024-01-25",
+        "status": "approved",
+        "reasoning": "Clear, explicit, easy to test and document, and an industry standard.",
+        "alternatives": "Header versioning, query parameter versioning",
+        "impact": "All API routes must include a version prefix.",
+        "tags": [
+          "api",
+          "versioning",
+          "url-path"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\decisions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:43.097989"
+      },
+      {
+        "id": "dec-cla-002",
+        "title": "Error Handling Pattern",
+        "summary": "Implement centralized error handling middleware with custom error classes.",
+        "date": "2024-01-28",
+        "status": "approved",
+        "reasoning": "Provides consistent error responses and easier debugging.",
+        "alternatives": null,
+        "impact": null,
+        "tags": [
+          "error-handling",
+          "middleware",
+          "javascript"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\decisions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:43.098003"
+      },
+      {
+        "id": "dec-cla-003",
+        "title": "File Upload Strategy",
+        "summary": "Store files in AWS S3.",
+        "date": "2024-02-01",
+        "status": "approved",
+        "reasoning": "Scalable, integrates with CDN, and cost-effective for large files.",
+        "alternatives": "Local filesystem, Cloudinary",
+        "impact": "Configuration includes max file size, allowed types, and image optimization.",
+        "tags": [
+          "file-upload",
+          "aws",
+          "s3"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\decisions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:43.098007"
+      },
+      {
+        "id": "dec-cla-004",
+        "title": "Testing Strategy",
+        "summary": "Use Jest for unit tests, Supertest for integration tests, and Playwright for E2E tests.",
+        "date": "2024-02-03",
+        "status": "approved",
+        "reasoning": null,
+        "alternatives": null,
+        "impact": "80% coverage target for critical paths. Tests run automatically on every PR.",
+        "tags": [
+          "testing",
+          "jest",
+          "supertest",
+          "playwright"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\decisions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:43.098010"
+      },
+      {
+        "id": "dec-cla-005",
+        "title": "Logging Strategy",
+        "summary": "Use Winston for application logging and Morgan for HTTP logging.",
+        "date": "2024-02-08",
+        "status": "approved",
+        "reasoning": null,
+        "alternatives": null,
+        "impact": "Log levels include error, warn, info, debug. Storage varies between development and production environments. Sensitive data must not be logged.",
+        "tags": [
+          "logging",
+          "winston",
+          "morgan"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\decisions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:43.098012"
+      },
+      {
+        "id": "dec-cla-006",
+        "title": "Refactor authentication middleware",
+        "summary": "The current authentication middleware implementation is tightly coupled and needs refactoring.",
+        "date": null,
+        "status": null,
+        "reasoning": "To improve code modularity and maintainability.",
+        "alternatives": "None mentioned.",
+        "impact": "Authentication system and potentially related middleware.",
+        "tags": [
+          "authentication",
+          "refactoring",
+          "middleware"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288840"
+      },
+      {
+        "id": "dec-cla-007",
+        "title": "Add input validation",
+        "summary": "Implement proper input validation for endpoints that lack it.",
+        "date": null,
+        "status": null,
+        "reasoning": "To ensure data integrity and prevent potential security risks.",
+        "alternatives": "None specified.",
+        "impact": "API endpoints and data processing.",
+        "tags": [
+          "validation",
+          "security",
+          "endpoints"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288857"
+      },
+      {
+        "id": "dec-cla-008",
+        "title": "Improve error messages",
+        "summary": "Enhance error messages to be more user-friendly and informative.",
+        "date": null,
+        "status": null,
+        "reasoning": "Better user experience and clearer communication of issues.",
+        "alternatives": "No alternatives discussed.",
+        "impact": "User interface and API responses.",
+        "tags": [
+          "error handling",
+          "user experience"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288861"
+      },
+      {
+        "id": "dec-cla-009",
+        "title": "Add API documentation",
+        "summary": "Generate Swagger documentation for the API.",
+        "date": null,
+        "status": null,
+        "reasoning": "To provide clear and accessible documentation for API users.",
+        "alternatives": "Other documentation tools were not considered.",
+        "impact": "API documentation and developer experience.",
+        "tags": [
+          "documentation",
+          "swagger",
+          "api"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288864"
+      },
+      {
+        "id": "dec-cla-010",
+        "title": "Implement caching",
+        "summary": "Use Redis for caching frequently accessed data.",
+        "date": null,
+        "status": null,
+        "reasoning": "Improve performance and reduce database load.",
+        "alternatives": "Other caching solutions like Memcached were not discussed.",
+        "impact": "Application performance and database efficiency.",
+        "tags": [
+          "caching",
+          "redis",
+          "performance"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288866"
+      },
+      {
+        "id": "dec-cla-011",
+        "title": "Add monitoring",
+        "summary": "Integrate application performance monitoring tools.",
+        "date": null,
+        "status": null,
+        "reasoning": "To gain insights into application health and performance.",
+        "alternatives": "No alternatives mentioned.",
+        "impact": "Application monitoring and performance analysis.",
+        "tags": [
+          "monitoring",
+          "performance"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288869"
+      },
+      {
+        "id": "dec-cla-012",
+        "title": "Refactor CSS",
+        "summary": "Refactor CSS to remove unused styles and improve code quality.",
+        "date": null,
+        "status": null,
+        "reasoning": "Enhance code maintainability and reduce file size.",
+        "alternatives": "No alternatives provided.",
+        "impact": "UI styling and front-end performance.",
+        "tags": [
+          "css",
+          "refactoring",
+          "front-end"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288871"
+      },
+      {
+        "id": "dec-cla-013",
+        "title": "Update dependencies",
+        "summary": "Update outdated packages to their latest versions.",
+        "date": null,
+        "status": null,
+        "reasoning": "To ensure security, stability, and access to new features.",
+        "alternatives": "No alternatives discussed.",
+        "impact": "Project dependencies and potential security.",
+        "tags": [
+          "dependencies",
+          "security",
+          "updates"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288874"
+      },
+      {
+        "id": "dec-cla-014",
+        "title": "Add more unit tests",
+        "summary": "Increase unit test coverage to improve code reliability.",
+        "date": null,
+        "status": null,
+        "reasoning": "Enhance code quality and reduce potential bugs.",
+        "alternatives": "No mention of alternative testing strategies.",
+        "impact": "Code testing and quality assurance.",
+        "tags": [
+          "testing",
+          "quality assurance",
+          "unit tests"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288876"
+      },
+      {
+        "id": "dec-cla-015",
+        "title": "State Management",
+        "summary": "Redux Toolkit for global state management",
+        "date": "2024-01-18",
+        "status": "approved",
+        "reasoning": "Complex state logic, time-travel debugging, and middleware support are required.",
+        "alternatives": "Context API, Zustand",
+        "impact": "Global state management in the application",
+        "tags": [
+          "state management",
+          "redux",
+          "toolkit"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\README.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:22.364798"
+      },
+      {
+        "id": "dec-cla-016",
+        "title": "Styling Approach",
+        "summary": "Tailwind CSS with custom design tokens",
+        "date": "2024-01-12",
+        "status": "approved",
+        "reasoning": "Rapid development, consistent design system, and small bundle size are achieved.",
+        "alternatives": null,
+        "impact": "Visual design and styling of the application",
+        "tags": [
+          "styling",
+          "tailwind",
+          "design system"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\README.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:22.364812"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rul-cur-001",
+        "rule": "All Hebrew and Arabic interfaces must follow RTL layout.",
+        "scope": "UI components",
+        "exceptions": "Code snippets and API paths are exempt and remain LTR.",
+        "notes": "Ensures proper text alignment and layout for right-to-left languages.",
+        "tags": [
+          "internationalization",
+          "rtl",
+          "ui"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\spec.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:13.325712"
+      },
+      {
+        "id": "rul-cla-001",
+        "rule": "All text content in Hebrew/Arabic must be rendered with RTL directionality.",
+        "scope": "ui",
+        "exceptions": null,
+        "notes": "Use the 'dir' attribute and CSS logical properties for implementation. Test with real content.",
+        "tags": [
+          "rtl",
+          "internationalization",
+          "accessibility"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\README.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:22.364817"
+      }
+    ],
+    "warnings": [
+      {
+        "id": "war-cur-001",
+        "area": "Authentication Module",
+        "message": "This module handles user credentials and tokens. Any changes must be reviewed by the security team.",
+        "severity": "high",
+        "last_modified": "2024-01-20",
+        "tags": [
+          "security",
+          "credentials",
+          "tokens"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\instructions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:09:34.202884"
+      },
+      {
+        "id": "war-cur-002",
+        "area": "Payment Processing",
+        "message": "Do not modify payment logic without PCI compliance review",
+        "severity": "critical",
+        "last_modified": null,
+        "tags": [
+          "payment",
+          "PCI compliance"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\instructions.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:09:34.202896"
+      },
+      {
+        "id": "war-cur-003",
+        "area": "Authentication",
+        "message": "Do not modify the JWT verification hook without thorough testing. This is critical for maintaining security.",
+        "severity": "critical",
+        "last_modified": "2024-01-20",
+        "tags": [
+          "security",
+          "jwt",
+          "authentication"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\spec.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:13.325715"
+      },
+      {
+        "id": "war-cla-001",
+        "area": "Payment Integration",
+        "message": "Payment integration with Stripe is complex and may require extra time and expertise.",
+        "severity": "medium",
+        "last_modified": null,
+        "tags": [
+          "payment",
+          "stripe",
+          "integration"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288881"
+      },
+      {
+        "id": "war-cla-002",
+        "area": "Performance",
+        "message": "Potential performance issues at scale, especially without proper caching and scaling strategies.",
+        "severity": "medium",
+        "last_modified": null,
+        "tags": [
+          "performance",
+          "caching",
+          "scaling"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288884"
+      },
+      {
+        "id": "war-cla-003",
+        "area": "Security",
+        "message": "Low probability but critical impact of security vulnerabilities due to outdated dependencies or coding errors.",
+        "severity": "critical",
+        "last_modified": null,
+        "tags": [
+          "security",
+          "vulnerabilities",
+          "dependencies"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\plan.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:05.288886"
+      }
+    ],
+    "changes": [
+      {
+        "id": "cha-cur-001",
+        "type": "database schema",
+        "description": "Added discount_percentage field and wishlist table, removed old_price field.",
+        "date": "2024-02-10",
+        "impact": "Product pricing and user wishlist functionality.",
+        "related_to": "Product management, user experience.",
+        "tags": [
+          "database",
+          "product",
+          "wishlist"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\spec.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:13.325718"
+      },
+      {
+        "id": "cha-cur-002",
+        "type": "ui",
+        "description": "Setup project structure with React and Vite",
+        "date": "2024-01-10",
+        "impact": "Project foundation",
+        "related_to": "Project Setup",
+        "tags": [
+          "react",
+          "vite",
+          "project_setup"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402828"
+      },
+      {
+        "id": "cha-cur-003",
+        "type": "api",
+        "description": "Node.js backend with Express and PostgreSQL integration",
+        "date": "2024-01-10",
+        "impact": "Server-side functionality",
+        "related_to": "Backend Development",
+        "tags": [
+          "node.js",
+          "express",
+          "postgresql"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402842"
+      },
+      {
+        "id": "cha-cur-004",
+        "type": "api",
+        "description": "Implemented user authentication with JWT, refresh tokens, and bcrypt",
+        "date": "2024-01-22",
+        "impact": "User security and session management",
+        "related_to": "Authentication",
+        "tags": [
+          "jwt",
+          "refresh_tokens",
+          "bcrypt"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402845"
+      },
+      {
+        "id": "cha-cur-005",
+        "type": "ui",
+        "description": "Product catalog development in progress",
+        "date": "2024-02-01",
+        "impact": "Product browsing experience",
+        "related_to": "Product Catalog",
+        "tags": [
+          "product_listing",
+          "filters",
+          "pagination"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402848"
+      },
+      {
+        "id": "cha-cur-006",
+        "type": "api",
+        "description": "Pending: Payment integration with Stripe API",
+        "date": null,
+        "impact": "Payment processing",
+        "related_to": "Payment Gateway",
+        "tags": [
+          "stripe",
+          "payment_integration",
+          "high_priority"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402850"
+      },
+      {
+        "id": "cha-cur-007",
+        "type": "api",
+        "description": "Pending: Email notification system",
+        "date": null,
+        "impact": "User communication",
+        "related_to": "Email Notifications",
+        "tags": [
+          "email",
+          "order_confirmation"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "mock_docs\\cursor\\tasks.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:10:31.402853"
+      },
+      {
+        "id": "cha-cla-001",
+        "type": "api",
+        "description": "Added rate limiting to the login endpoint for security.",
+        "date": "2024-02-05",
+        "impact": "Security enhancement for brute force attack prevention",
+        "related_to": "Security, Login",
+        "tags": [
+          "security",
+          "rate limiting",
+          "login"
+        ],
+        "source": {
+          "tool": "claude_code",
+          "file": "mock_docs\\claude_code\\README.md",
+          "anchor": null,
+          "line_range": null
+        },
+        "observed_at": "2026-03-11T14:11:22.364821"
+      }
+    ]
+  }
+}

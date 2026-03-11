@@ -3,7 +3,7 @@ sys.path.append('src')
 
 import gradio as gr
 from indexer import load_existing_index
-from sync_event_workflow import SyncRAGWorkflow
+from sync_event_workflow_v2 import SyncRAGWorkflow
 
 # Load index
 print("Loading index...")
@@ -13,21 +13,22 @@ print("Index loaded successfully!")
 # Create workflow
 workflow = SyncRAGWorkflow(index=index, max_attempts=2)
 print("\n" + "="*60)
-print("RAG Workflow - Synchronous Event-Driven Architecture")
+print("RAG Workflow - Event-Driven with Routing (Stage C)")
 print("="*60)
 print("\nWorkflow Steps:")
-print("  1. Input Validation - validates query and initializes state")
-print("  2. Node Retrieval - fetches relevant documents (with retry)")
-print("  3. Quality Check - evaluates confidence and routes accordingly")
-print("  4. LLM Synthesis - generates natural language response")
-print("  5. Response Formatting - adds metadata and finalizes")
+print("  1. Input Validation")
+print("  2. Query Routing (Semantic vs Structured) [NEW]")
+print("  3a. Structured Query (if needed) [NEW]")
+print("  3b. Node Retrieval (semantic path)")
+print("  4. Quality Check")
+print("  5. LLM Synthesis")
+print("  6. Response Formatting")
 print("\nFeatures:")
-print("  ✅ Event-driven routing based on quality")
-print("  ✅ State management for attempts and history")
-print("  ✅ Automatic retry with more context if needed")
-print("  ✅ Multiple validations at each step")
-print("  ✅ Cohere LLM (command-r-plus-08-2024)")
-print("  ✅ No async complexity - works perfectly with Gradio")
+print("  - Intelligent routing (semantic vs structured)")
+print("  - Structured data queries (lists, filters, latest)")
+print("  - Event-driven with state management")
+print("  - Automatic retry with more context")
+print("  - Cohere LLM (command-r-plus-08-2024)")
 print("="*60 + "\n")
 
 def chat(message, history):
@@ -48,10 +49,10 @@ demo = gr.ChatInterface(
     description="Ask questions about your project documentation from Cursor and Claude Code",
     examples=[
         "What is the primary color in the design system?",
-        "Which languages are supported for translation?",
-        "What database changes were made recently?",
+        "List all technical decisions",
+        "Show me all critical warnings",
         "What are the RTL rules for the interface?",
-        "What are the sensitive areas in the codebase?",
+        "What database changes were made recently?",
         "How do I install the system?",
         "What technical decisions were made about authentication?"
     ]

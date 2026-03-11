@@ -19,7 +19,7 @@ def main():
     print("\n2. Creating vector index...")
     index = create_index(documents)
     
-    print("\n✅ Index built successfully!")
+    print("\nIndex built successfully!")
     print("You can now run the chat interface with: python app.py")
 
 if __name__ == "__main__":

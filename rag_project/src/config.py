@@ -11,5 +11,5 @@ DOCS_PATHS = {
     "claude_code": "mock_docs/claude_code"
 }
 
-CHUNK_SIZE = 512
+CHUNK_SIZE = 256
 CHUNK_OVERLAP = 50
