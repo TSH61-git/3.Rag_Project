@@ -8,7 +8,11 @@ def load_documents():
     
     for tool_name, path in config.DOCS_PATHS.items():
         full_path = Path(path)
-        if full_path.exists():
+        if not full_path.exists():
+            print(f"Warning: Path does not exist: {full_path}")
+            continue
+        
+        try:
             reader = SimpleDirectoryReader(
                 input_dir=str(full_path),
                 required_exts=[".md"],
@@ -22,6 +26,9 @@ def load_documents():
             
             all_documents.extend(documents)
             print(f"Loaded {len(documents)} documents from {tool_name}")
+        except ValueError as e:
+            print(f"Warning: Could not load from {tool_name}: {e}")
+            continue
     
     print(f"Total documents loaded: {len(all_documents)}")
     return all_documents
