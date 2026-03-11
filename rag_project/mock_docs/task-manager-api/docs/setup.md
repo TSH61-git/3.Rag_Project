@@ -92,15 +92,9 @@ This will install all required packages:
 
    # MongoDB Configuration
    # For local MongoDB:
-   MONGODB_URI=mongodb://localhost:27017/task-manager
+   MONGODB_URI=mongodb://localhost:27017/task-manage
    
-   # For MongoDB Atlas:
-   # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/task-manager?retryWrites=true&w=majority
-
-   # JWT Configuration
-   JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
-   JWT_EXPIRE=7d
-   ```
+    # For MongoDB Atlas:
 
 3. **Important**: Generate a strong JWT_SECRET:
    ```bash
