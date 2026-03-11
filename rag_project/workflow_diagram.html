@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Workflow Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .legend h3 {
+            margin-top: 0;
+        }
+        .legend-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 RAG Workflow - Event-Driven Architecture</h1>
+        
+        <div class="mermaid">
+            graph TD
+                Start([StartEvent<br/>query: str]) --> Step1
+                
+                Step1[<b>@step</b><br/>validate_input<br/>Validate user input] --> Decision1{Valid?}
+                
+                Decision1 -->|No| Stop1([StopEvent<br/>Invalid input])
+                Decision1 -->|Yes| Event1[InputValidatedEvent<br/>query: str]
+                
+                Event1 --> Step2[<b>@step</b><br/>retrieve_nodes<br/>Search in vector index]
+                
+                Step2 --> Decision2{Found<br/>nodes?}
+                
+                Decision2 -->|No| Stop2([StopEvent<br/>No results])
+                Decision2 -->|Error| Stop3([StopEvent<br/>Error message])
+                Decision2 -->|Yes| Event2[NodesRetrievedEvent<br/>query, nodes]
+                
+                Event2 --> Step3[<b>@step</b><br/>check_quality<br/>Calculate confidence score]
+                
+                Step3 --> Event3[QualityCheckedEvent<br/>query, nodes,<br/>confidence_score,<br/>is_good_quality]
+                
+                Event3 --> Step4[<b>@step</b><br/>format_response<br/>Build final response]
+                
+                Step4 --> Stop4([StopEvent<br/>result: formatted response])
+                
+                style Start fill:#e1f5e1
+                style Stop1 fill:#ffe1e1
+                style Stop2 fill:#ffe1e1
+                style Stop3 fill:#ffe1e1
+                style Stop4 fill:#e1f5e1
+                style Step1 fill:#e3f2fd
+                style Step2 fill:#e3f2fd
+                style Step3 fill:#e3f2fd
+                style Step4 fill:#e3f2fd
+                style Event1 fill:#fff9c4
+                style Event2 fill:#fff9c4
+                style Event3 fill:#fff9c4
+        </div>
+        
+        <div class="legend">
+            <h3>📋 Workflow Components</h3>
+            
+            <div class="legend-item" style="border-color: #4CAF50;">
+                <strong>Steps (@step decorator):</strong>
+                <ul>
+                    <li><code>validate_input</code> - Checks if query is valid (not empty, min 3 chars)</li>
+                    <li><code>retrieve_nodes</code> - Searches vector index for relevant documents</li>
+                    <li><code>check_quality</code> - Calculates confidence score (threshold: 0.2)</li>
+                    <li><code>format_response</code> - Formats final response with sources</li>
+                </ul>
+            </div>
+            
+            <div class="legend-item" style="border-color: #FF9800;">
+                <strong>Events:</strong>
+                <ul>
+                    <li><code>StartEvent</code> - Workflow entry point with user query</li>
+                    <li><code>InputValidatedEvent</code> - Query passed validation</li>
+                    <li><code>NodesRetrievedEvent</code> - Relevant documents found</li>
+                    <li><code>QualityCheckedEvent</code> - Quality assessment complete</li>
+                    <li><code>StopEvent</code> - Workflow exit with result or error</li>
+                </ul>
+            </div>
+            
+            <div class="legend-item" style="border-color: #2196F3;">
+                <strong>State Management:</strong>
+                <ul>
+                    <li>Query string flows through all events</li>
+                    <li>Nodes stored after retrieval</li>
+                    <li>Confidence score calculated and passed</li>
+                    <li>Context available across all steps</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

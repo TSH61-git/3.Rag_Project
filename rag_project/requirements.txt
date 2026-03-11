@@ -1,0 +1,7 @@
+llama-index-core
+llama-index-embeddings-cohere
+llama-index-llms-cohere
+llama-index-llms-ollama
+cohere
+gradio
+python-dotenv

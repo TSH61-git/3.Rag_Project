@@ -1,0 +1,15 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+STORAGE_DIR = "data/storage"
+
+DOCS_PATHS = {
+    "cursor": "mock_docs/cursor",
+    "claude_code": "mock_docs/claude_code"
+}
+
+CHUNK_SIZE = 512
+CHUNK_OVERLAP = 50
