@@ -93,13 +93,32 @@ rag_project/
 └── README.md
 ```
 
-## שלב ב' - Event-Driven Workflow (✅ הושלם)
-הארכיטקטורה שודרגה ל-Workflow מבוסס אירועים עם 5 שלבים:
-1. **Input Validation** - אימות קלט
-2. **Node Retrieval** - שליפת nodes רלוונטיים
-3. **Quality Check** - בדיקת איכות התוצאות
-4. **LLM Synthesis** - סינתזה של תשובה עם Cohere LLM
-5. **Response Formatting** - עיצוב התשובה הסופית
+## שלב ב' - Event-Driven Workflow (✅ מושלם)
+
+הארכיטקטורה שודרגה ל-Workflow Event-Driven מלא עם:
+
+### תכונות מתקדמות:
+- **ניתוב דינמי** - הזרימה משתנה לפי איכות התוצאות
+- **State Management** - עוקב אחרי ניסיונות והיסטוריה
+- **Retry אוטומטי** - אם confidence נמוך, מנסה שוב עם יותר הקשר
+- **ולידציות מרובות** - בדיקות בכל שלב
+- **Fallback חכם** - אם LLM נכשל, מחזיר תוכן גולמי
+
+### 5 Steps:
+1. **Input Validation** - אימות קלט + אתחול State
+2. **Node Retrieval** - שליפה (3 nodes → 5 nodes בretry)
+3. **Quality Check** - הערכה + ניתוב (continue/retry/stop)
+4. **LLM Synthesis** - סינתזה עם Cohere (3 מודלים)
+5. **Response Formatting** - עיצוב + metadata
+
+### ניתוב לפי Confidence:
+```
+confidence >= 0.3  → ✅ המשך
+confidence >= 0.15 → ⚠️ המשך עם אזהרה
+confidence < 0.15  → 🔄 retry (max 2 attempts)
+```
+
+ראה [STAGE_B_COMPLETE.md](STAGE_B_COMPLETE.md) לתיעוד מלא.
 
 ## שלב ג' - Data Extraction (בפיתוח)
 בשלב זה נוסיף חילוץ נתונים מובנה לשאלות מורכבות.

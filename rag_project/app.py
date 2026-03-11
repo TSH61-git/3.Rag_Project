@@ -3,27 +3,37 @@ sys.path.append('src')
 
 import gradio as gr
 from indexer import load_existing_index
-from simple_rag import SimpleRAGPipeline
+from sync_event_workflow import SyncRAGWorkflow
 
 # Load index
 print("Loading index...")
 index = load_existing_index()
 print("Index loaded successfully!")
 
-# Create pipeline
-pipeline = SimpleRAGPipeline(index=index)
-print("RAG Pipeline initialized with 5 steps:")
-print("  1. Input Validation")
-print("  2. Node Retrieval")
-print("  3. Quality Check")
-print("  4. LLM Synthesis (Cohere)")
-print("  5. Response Formatting")
-print()
+# Create workflow
+workflow = SyncRAGWorkflow(index=index, max_attempts=2)
+print("\n" + "="*60)
+print("RAG Workflow - Synchronous Event-Driven Architecture")
+print("="*60)
+print("\nWorkflow Steps:")
+print("  1. Input Validation - validates query and initializes state")
+print("  2. Node Retrieval - fetches relevant documents (with retry)")
+print("  3. Quality Check - evaluates confidence and routes accordingly")
+print("  4. LLM Synthesis - generates natural language response")
+print("  5. Response Formatting - adds metadata and finalizes")
+print("\nFeatures:")
+print("  ✅ Event-driven routing based on quality")
+print("  ✅ State management for attempts and history")
+print("  ✅ Automatic retry with more context if needed")
+print("  ✅ Multiple validations at each step")
+print("  ✅ Cohere LLM (command-r-plus-08-2024)")
+print("  ✅ No async complexity - works perfectly with Gradio")
+print("="*60 + "\n")
 
 def chat(message, history):
-    """Handle chat messages using simple RAG pipeline"""
+    """Handle chat messages using synchronous event-driven workflow"""
     try:
-        response = pipeline.query(message)
+        response = workflow.run(query=message)
         return response
     except Exception as e:
         print(f"Unexpected error: {str(e)}")
